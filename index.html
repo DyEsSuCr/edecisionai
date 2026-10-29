@@ -1,0 +1,2220 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>CommerceHub — Arquitectura Full Stack</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">CommerceHub <em>Arquitectura</em></span>
+        </div>
+
+        <div
+          class="progress"
+          role="progressbar"
+          aria-label="Progreso de la presentación"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="12"
+          id="progress"
+        >
+          <div class="progress__bar" id="progressBar"></div>
+        </div>
+
+        <div class="counter" aria-live="polite">
+          <span id="currentSlide">1</span><span class="counter__sep">/</span
+          ><span id="totalSlides">8</span>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn--icon"
+          id="fullscreenBtn"
+          aria-pressed="false"
+          title="Pantalla completa (F)"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="btn__label">Pantalla completa</span>
+        </button>
+      </header>
+
+      <main class="deck" id="deck">
+        <section class="slide is-active" id="slide-1" aria-label="Portada">
+          <div class="cover">
+            <p class="eyebrow">Evaluación técnica · Desarrollador Full Stack</p>
+            <h1 class="cover__title">
+              CommerceHub
+              <span class="cover__dash">—</span>
+              <span class="cover__accent">Arquitectura Full Stack</span>
+            </h1>
+            <p class="cover__sub">
+              Diseño, implementación, seguridad y operación de una plataforma de
+              comercio electrónico.
+            </p>
+            <ul class="tags">
+              <li class="tag tag--blue">Arquitectura modular</li>
+              <li class="tag tag--cyan">Consistencia de inventario</li>
+              <li class="tag tag--green">Pagos idempotentes</li>
+              <li class="tag tag--orange">Observabilidad y resiliencia</li>
+            </ul>
+            <div class="cover__hint">
+              <kbd>←</kbd> <kbd>→</kbd> para navegar · <kbd>Inicio</kbd> /
+              <kbd>Fin</kbd> para saltar
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="slide-2"
+          aria-label="Arquitectura de alto nivel"
+        >
+          <header class="slide__head">
+            <h2>Arquitectura de alto nivel</h2>
+            <p>
+              Monolito modular con límites claros, respaldo transaccional y
+              eventos asíncronos fiables.
+            </p>
+          </header>
+
+          <div class="split">
+            <div class="diagram">
+              <div class="diagram__scroll">
+                <svg
+                  class="diagram-svg"
+                  viewBox="0 0 1240 500"
+                  role="img"
+                  aria-labelledby="s2-title s2-desc"
+                >
+                  <title id="s2-title">
+                    Arquitectura de alto nivel de CommerceHub
+                  </title>
+                  <desc id="s2-desc">
+                    Clientes, API Gateway, monolito modular Node.js y servicios
+                    de datos e infraestructura. Las líneas continuas son
+                    llamadas síncronas y las discontinuas, eventos asíncronos.
+                  </desc>
+
+                  <defs>
+                    <marker
+                      id="s2a"
+                      viewBox="0 0 10 10"
+                      refX="9"
+                      refY="5"
+                      markerWidth="7"
+                      markerHeight="7"
+                      orient="auto"
+                    >
+                      <path d="M0 0 L10 5 L0 10 Z" fill="#6b83ad" />
+                    </marker>
+                    <marker
+                      id="s2b"
+                      viewBox="0 0 10 10"
+                      refX="9"
+                      refY="5"
+                      markerWidth="7"
+                      markerHeight="7"
+                      orient="auto"
+                    >
+                      <path d="M0 0 L10 5 L0 10 Z" fill="#38e0d0" />
+                    </marker>
+                  </defs>
+
+                  <text class="t-col" x="16" y="30">Clientes</text>
+                  <text class="t-col" x="232" y="30">Entrada</text>
+                  <text class="t-col" x="902" y="30">
+                    Datos e infraestructura
+                  </text>
+
+                  <g
+                    class="node"
+                    data-node="client-web"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Cliente web React"
+                  >
+                    <title>Cliente web React</title>
+                    <rect x="16" y="50" width="170" height="54" rx="10" />
+                    <text class="t-title" x="101" y="74" text-anchor="middle">
+                      Web React
+                    </text>
+                    <text class="t-sub" x="101" y="92" text-anchor="middle">
+                      SPA · sesión con JWT
+                    </text>
+                  </g>
+
+                  <g
+                    class="node"
+                    data-node="client-mobile"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Aplicación móvil React Native"
+                  >
+                    <title>Aplicación móvil React Native</title>
+                    <rect x="16" y="118" width="170" height="54" rx="10" />
+                    <text class="t-title" x="101" y="142" text-anchor="middle">
+                      App móvil
+                    </text>
+                    <text class="t-sub" x="101" y="160" text-anchor="middle">
+                      React Native
+                    </text>
+                  </g>
+
+                  <g
+                    class="node"
+                    data-node="client-admin"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Portal administrativo"
+                  >
+                    <title>Portal administrativo</title>
+                    <rect x="16" y="186" width="170" height="54" rx="10" />
+                    <text class="t-title" x="101" y="210" text-anchor="middle">
+                      Portal admin
+                    </text>
+                    <text class="t-sub" x="101" y="228" text-anchor="middle">
+                      roles y permisos
+                    </text>
+                  </g>
+
+                  <line
+                    class="link"
+                    x1="186"
+                    y1="77"
+                    x2="226"
+                    y2="77"
+                    marker-end="url(#s2a)"
+                  />
+                  <line
+                    class="link"
+                    x1="186"
+                    y1="145"
+                    x2="226"
+                    y2="145"
+                    marker-end="url(#s2a)"
+                  />
+                  <line
+                    class="link"
+                    x1="186"
+                    y1="213"
+                    x2="226"
+                    y2="213"
+                    marker-end="url(#s2a)"
+                  />
+
+                  <g
+                    class="node"
+                    data-node="gateway"
+                    tabindex="0"
+                    role="button"
+                    aria-label="API Gateway y BFF"
+                  >
+                    <title>API Gateway / BFF</title>
+                    <rect
+                      class="container"
+                      x="232"
+                      y="50"
+                      width="180"
+                      height="190"
+                      rx="12"
+                    />
+                    <text class="t-title" x="322" y="76" text-anchor="middle">
+                      API Gateway / BFF
+                    </text>
+
+                    <rect
+                      class="chip"
+                      x="246"
+                      y="92"
+                      width="152"
+                      height="38"
+                      rx="8"
+                    />
+                    <text
+                      class="t-sub t-sub--strong"
+                      x="322"
+                      y="116"
+                      text-anchor="middle"
+                    >
+                      HTTPS · TLS 1.3
+                    </text>
+
+                    <rect
+                      class="chip"
+                      x="246"
+                      y="136"
+                      width="152"
+                      height="38"
+                      rx="8"
+                    />
+                    <text
+                      class="t-sub t-sub--strong"
+                      x="322"
+                      y="160"
+                      text-anchor="middle"
+                    >
+                      Autenticación
+                    </text>
+
+                    <rect
+                      class="chip"
+                      x="246"
+                      y="180"
+                      width="152"
+                      height="38"
+                      rx="8"
+                    />
+                    <text
+                      class="t-sub t-sub--strong"
+                      x="322"
+                      y="204"
+                      text-anchor="middle"
+                    >
+                      Rate limiting
+                    </text>
+                  </g>
+
+                  <line
+                    class="link link--strong"
+                    x1="412"
+                    y1="145"
+                    x2="462"
+                    y2="145"
+                    marker-end="url(#s2a)"
+                  />
+                  <text class="t-link" x="437" y="136" text-anchor="middle">
+                    REST
+                  </text>
+
+                  <g
+                    class="node"
+                    data-node="backend"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Backend: monolito modular Node.js con NestJS"
+                  >
+                    <title>Backend — monolito modular</title>
+                    <rect
+                      class="container"
+                      x="468"
+                      y="50"
+                      width="330"
+                      height="440"
+                      rx="14"
+                    />
+                    <text
+                      class="t-title t-title--lg"
+                      x="633"
+                      y="80"
+                      text-anchor="middle"
+                    >
+                      Backend — Monolito modular
+                    </text>
+                    <text class="t-sub" x="633" y="98" text-anchor="middle">
+                      Node.js / NestJS · límites por módulo
+                    </text>
+                  </g>
+
+                  <g
+                    class="node"
+                    data-node="mod-catalogo"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Módulo Catálogo"
+                  >
+                    <title>Catálogo</title>
+                    <rect x="484" y="112" width="142" height="52" rx="9" />
+                    <text class="t-title" x="555" y="144" text-anchor="middle">
+                      Catálogo
+                    </text>
+                  </g>
+                  <g
+                    class="node"
+                    data-node="mod-inventario"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Módulo Inventario"
+                  >
+                    <title>Inventario</title>
+                    <rect x="640" y="112" width="142" height="52" rx="9" />
+                    <text class="t-title" x="711" y="144" text-anchor="middle">
+                      Inventario
+                    </text>
+                  </g>
+                  <g
+                    class="node"
+                    data-node="mod-carrito"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Módulo Carrito"
+                  >
+                    <title>Carrito</title>
+                    <rect x="484" y="176" width="142" height="52" rx="9" />
+                    <text class="t-title" x="555" y="208" text-anchor="middle">
+                      Carrito
+                    </text>
+                  </g>
+                  <g
+                    class="node"
+                    data-node="mod-ordenes"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Módulo Órdenes"
+                  >
+                    <title>Órdenes</title>
+                    <rect x="640" y="176" width="142" height="52" rx="9" />
+                    <text class="t-title" x="711" y="208" text-anchor="middle">
+                      Órdenes
+                    </text>
+                  </g>
+                  <g
+                    class="node"
+                    data-node="mod-pagos"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Módulo Pagos"
+                  >
+                    <title>Pagos</title>
+                    <rect x="484" y="240" width="142" height="52" rx="9" />
+                    <text class="t-title" x="555" y="272" text-anchor="middle">
+                      Pagos
+                    </text>
+                  </g>
+                  <g
+                    class="node"
+                    data-node="mod-usuarios"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Módulo Usuarios"
+                  >
+                    <title>Usuarios</title>
+                    <rect x="640" y="240" width="142" height="52" rx="9" />
+                    <text class="t-title" x="711" y="272" text-anchor="middle">
+                      Usuarios
+                    </text>
+                  </g>
+                  <g
+                    class="node"
+                    data-node="mod-notificaciones"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Módulo Notificaciones"
+                  >
+                    <title>Notificaciones</title>
+                    <rect x="484" y="304" width="142" height="52" rx="9" />
+                    <text class="t-title" x="555" y="336" text-anchor="middle">
+                      Notificaciones
+                    </text>
+                  </g>
+                  <g
+                    class="node"
+                    data-node="mod-auditoria"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Módulo Auditoría"
+                  >
+                    <title>Auditoría</title>
+                    <rect x="640" y="304" width="142" height="52" rx="9" />
+                    <text class="t-title" x="711" y="336" text-anchor="middle">
+                      Auditoría
+                    </text>
+                  </g>
+
+                  <g
+                    class="node"
+                    data-node="outbox"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Patrón Transactional Outbox"
+                  >
+                    <title>Transactional Outbox</title>
+                    <rect
+                      class="accent-box"
+                      x="484"
+                      y="380"
+                      width="298"
+                      height="94"
+                      rx="10"
+                    />
+                    <text class="t-title" x="633" y="410" text-anchor="middle">
+                      Transactional Outbox
+                    </text>
+                    <text class="t-sub" x="633" y="432" text-anchor="middle">
+                      el evento se persiste en la misma transacción SQL
+                    </text>
+                    <text class="t-sub" x="633" y="450" text-anchor="middle">
+                      y se publica después, de forma asíncrona
+                    </text>
+                  </g>
+
+                  <line
+                    class="link"
+                    x1="798"
+                    y1="75"
+                    x2="896"
+                    y2="75"
+                    marker-end="url(#s2a)"
+                  />
+                  <text class="t-link" x="847" y="67" text-anchor="middle">
+                    SQL
+                  </text>
+
+                  <line
+                    class="link"
+                    x1="798"
+                    y1="141"
+                    x2="896"
+                    y2="141"
+                    marker-end="url(#s2a)"
+                  />
+                  <text class="t-link" x="847" y="133" text-anchor="middle">
+                    caché
+                  </text>
+
+                  <line
+                    class="link link--async"
+                    x1="798"
+                    y1="207"
+                    x2="896"
+                    y2="207"
+                    marker-end="url(#s2b)"
+                  />
+                  <text
+                    class="t-link t-link--async"
+                    x="847"
+                    y="199"
+                    text-anchor="middle"
+                  >
+                    eventos
+                  </text>
+
+                  <line
+                    class="link"
+                    x1="798"
+                    y1="273"
+                    x2="896"
+                    y2="273"
+                    marker-end="url(#s2a)"
+                  />
+                  <text class="t-link" x="847" y="265" text-anchor="middle">
+                    objetos
+                  </text>
+
+                  <line
+                    class="link"
+                    x1="798"
+                    y1="339"
+                    x2="896"
+                    y2="339"
+                    marker-end="url(#s2a)"
+                  />
+                  <text class="t-link" x="847" y="331" text-anchor="middle">
+                    HTTPS
+                  </text>
+
+                  <line
+                    class="link link--async"
+                    x1="798"
+                    y1="405"
+                    x2="896"
+                    y2="405"
+                    marker-end="url(#s2b)"
+                  />
+                  <text
+                    class="t-link t-link--async"
+                    x="847"
+                    y="397"
+                    text-anchor="middle"
+                  >
+                    OTLP
+                  </text>
+
+                  <g
+                    class="node"
+                    data-node="db-postgres"
+                    tabindex="0"
+                    role="button"
+                    aria-label="PostgreSQL, fuente de verdad"
+                  >
+                    <title>PostgreSQL</title>
+                    <rect x="902" y="48" width="320" height="54" rx="10" />
+                    <text class="t-title" x="918" y="71">PostgreSQL</text>
+                    <text class="t-sub" x="918" y="89">
+                      usuarios · órdenes · inventario · reservas · idempotencia
+                    </text>
+                  </g>
+
+                  <g
+                    class="node"
+                    data-node="db-redis"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Redis"
+                  >
+                    <title>Redis</title>
+                    <rect x="902" y="114" width="320" height="54" rx="10" />
+                    <text class="t-title" x="918" y="137">Redis</text>
+                    <text class="t-sub" x="918" y="155">
+                      caché de catálogo · sesiones
+                    </text>
+                  </g>
+
+                  <g
+                    class="node"
+                    data-node="db-rabbit"
+                    tabindex="0"
+                    role="button"
+                    aria-label="RabbitMQ"
+                  >
+                    <title>RabbitMQ</title>
+                    <rect x="902" y="180" width="320" height="54" rx="10" />
+                    <text class="t-title" x="918" y="203">RabbitMQ</text>
+                    <text class="t-sub" x="918" y="221">
+                      eventos asíncronos · colas y DLQ
+                    </text>
+                  </g>
+
+                  <g
+                    class="node"
+                    data-node="db-s3"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Amazon S3 y CDN"
+                  >
+                    <title>Amazon S3 y CDN</title>
+                    <rect x="902" y="246" width="320" height="54" rx="10" />
+                    <text class="t-title" x="918" y="269">Amazon S3 + CDN</text>
+                    <text class="t-sub" x="918" y="287">
+                      imágenes de producto · distribución
+                    </text>
+                  </g>
+
+                  <g
+                    class="node"
+                    data-node="db-pagos"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Proveedor externo de pagos"
+                  >
+                    <title>Proveedor externo de pagos</title>
+                    <rect x="902" y="312" width="320" height="54" rx="10" />
+                    <text class="t-title" x="918" y="335">
+                      Proveedor de pagos
+                    </text>
+                    <text class="t-sub" x="918" y="353">
+                      externo · webhooks firmados
+                    </text>
+                  </g>
+
+                  <g
+                    class="node"
+                    data-node="db-obs"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Observabilidad"
+                  >
+                    <title>Observabilidad</title>
+                    <rect x="902" y="378" width="320" height="54" rx="10" />
+                    <text class="t-title" x="918" y="401">Observabilidad</text>
+                    <text class="t-sub" x="918" y="419">
+                      logs · métricas · trazas · alertas
+                    </text>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="diagram__foot">
+                <ul class="legend">
+                  <li>
+                    <span class="legend__line" aria-hidden="true"></span>
+                    Síncrono (HTTP / SQL)
+                  </li>
+                  <li>
+                    <span
+                      class="legend__line legend__line--async"
+                      aria-hidden="true"
+                    ></span>
+                    Asíncrono / telemetría
+                  </li>
+                </ul>
+                <button type="button" class="btn btn--ghost" id="resetDiagram">
+                  Restablecer vista
+                </button>
+              </div>
+            </div>
+
+            <aside class="panel" id="nodePanel" aria-live="polite">
+              <p class="panel__hint">
+                Selecciona cualquier bloque del diagrama con clic o con
+                <kbd>Tab</kbd> + <kbd>Enter</kbd>
+                para ver su descripción.
+              </p>
+            </aside>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="slide-3"
+          aria-label="Secuencia de checkout y pago"
+        >
+          <header class="slide__head">
+            <h2>Secuencia de checkout y pago</h2>
+            <p>
+              Crear la orden y confirmar el pago son dos hechos distintos,
+              separados por una transacción y un webhook.
+            </p>
+          </header>
+
+          <div class="callout callout--orange">
+            <strong>Regla clave:</strong> crear una orden <em>no</em> equivale a
+            confirmar el pago. La orden nace en <code>PENDING_PAYMENT</code> y
+            solo un webhook verificado la mueve a <code>CONFIRMED</code> o
+            <code>PAYMENT_FAILED</code>.
+          </div>
+
+          <div class="diagram__scroll">
+            <svg
+              class="diagram-svg"
+              viewBox="0 0 1240 710"
+              role="img"
+              aria-labelledby="s3-title s3-desc"
+            >
+              <title id="s3-title">Diagrama de secuencia del checkout</title>
+              <desc id="s3-desc">
+                Flujo desde que el usuario pulsa Pagar hasta que el frontend
+                consulta el estado final de la orden, incluyendo la transacción
+                SQL, el outbox, RabbitMQ y el webhook del proveedor de pagos.
+              </desc>
+
+              <defs>
+                <marker
+                  id="s3a"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="7"
+                  markerHeight="7"
+                  orient="auto"
+                >
+                  <path d="M0 0 L10 5 L0 10 Z" fill="#6b83ad" />
+                </marker>
+                <marker
+                  id="s3b"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="7"
+                  markerHeight="7"
+                  orient="auto"
+                >
+                  <path d="M0 0 L10 5 L0 10 Z" fill="#38e0d0" />
+                </marker>
+              </defs>
+
+              <g class="seq-head">
+                <rect x="35" y="16" width="150" height="44" rx="9" />
+                <text x="110" y="44">Usuario</text>
+                <rect x="205" y="16" width="150" height="44" rx="9" />
+                <text x="280" y="44">Frontend</text>
+                <rect x="375" y="16" width="150" height="44" rx="9" />
+                <text x="450" y="44">Backend</text>
+                <rect x="535" y="16" width="150" height="44" rx="9" />
+                <text x="610" y="44">PostgreSQL</text>
+                <rect x="705" y="16" width="170" height="44" rx="9" />
+                <text x="790" y="44">Worker Outbox</text>
+                <rect x="885" y="16" width="150" height="44" rx="9" />
+                <text x="960" y="44">RabbitMQ</text>
+                <rect x="1055" y="16" width="150" height="44" rx="9" />
+                <text x="1130" y="44">Proveedor pagos</text>
+              </g>
+
+              <g class="lifeline">
+                <line x1="110" y1="62" x2="110" y2="690" />
+                <line x1="280" y1="62" x2="280" y2="690" />
+                <line x1="450" y1="62" x2="450" y2="690" />
+                <line x1="610" y1="62" x2="610" y2="690" />
+                <line x1="790" y1="62" x2="790" y2="690" />
+                <line x1="960" y1="62" x2="960" y2="690" />
+                <line x1="1130" y1="62" x2="1130" y2="690" />
+              </g>
+
+              <line
+                class="link"
+                x1="110"
+                y1="96"
+                x2="274"
+                y2="96"
+                marker-end="url(#s3a)"
+              />
+              <text class="t-msg" x="195" y="88" text-anchor="middle">
+                Pagar
+              </text>
+
+              <line
+                class="link"
+                x1="280"
+                y1="142"
+                x2="444"
+                y2="142"
+                marker-end="url(#s3a)"
+              />
+              <text class="t-msg" x="362" y="128" text-anchor="middle">
+                POST /api/v1/orders
+              </text>
+              <text
+                class="t-msg t-msg--mono"
+                x="362"
+                y="139"
+                text-anchor="middle"
+              >
+                Idempotency-Key
+              </text>
+
+              <path
+                class="link"
+                d="M450 182 H500 V200 H456"
+                marker-end="url(#s3a)"
+              />
+              <text class="t-msg" x="508" y="195">Valida solicitud</text>
+
+              <line
+                class="link"
+                x1="450"
+                y1="248"
+                x2="604"
+                y2="248"
+                marker-end="url(#s3a)"
+              />
+              <text class="t-msg" x="527" y="234" text-anchor="middle">
+                Reserva inventario +
+              </text>
+              <text class="t-msg" x="527" y="245" text-anchor="middle">
+                crea orden PENDING_PAYMENT
+              </text>
+
+              <line
+                class="link"
+                x1="450"
+                y1="294"
+                x2="604"
+                y2="294"
+                marker-end="url(#s3a)"
+              />
+              <text class="t-msg" x="527" y="280" text-anchor="middle">
+                Registra evento Outbox
+              </text>
+              <text class="t-msg" x="527" y="291" text-anchor="middle">
+                en la misma transacción
+              </text>
+
+              <line
+                class="link link--dashed"
+                x1="450"
+                y1="340"
+                x2="286"
+                y2="340"
+                marker-end="url(#s3a)"
+              />
+              <text class="t-msg" x="365" y="326" text-anchor="middle">
+                201 Created
+              </text>
+              <text
+                class="t-msg t-msg--mono"
+                x="365"
+                y="337"
+                text-anchor="middle"
+              >
+                PENDING_PAYMENT
+              </text>
+
+              <line
+                class="link link--async"
+                x1="790"
+                y1="386"
+                x2="954"
+                y2="386"
+                marker-end="url(#s3b)"
+              />
+              <text
+                class="t-msg t-msg--async"
+                x="872"
+                y="378"
+                text-anchor="middle"
+              >
+                Publica evento
+              </text>
+
+              <line
+                class="link"
+                x1="450"
+                y1="432"
+                x2="1124"
+                y2="432"
+                marker-end="url(#s3a)"
+              />
+              <text class="t-msg" x="787" y="424" text-anchor="middle">
+                Solicita cobro (fuera de la transacción SQL)
+              </text>
+
+              <line
+                class="link link--dashed"
+                x1="1130"
+                y1="478"
+                x2="456"
+                y2="478"
+                marker-end="url(#s3a)"
+              />
+              <text class="t-msg" x="790" y="470" text-anchor="middle">
+                Webhook firmado
+              </text>
+
+              <line
+                class="link"
+                x1="450"
+                y1="524"
+                x2="604"
+                y2="524"
+                marker-end="url(#s3a)"
+              />
+              <text class="t-msg" x="527" y="516" text-anchor="middle">
+                Verifica firma y deduplica
+              </text>
+
+              <line
+                class="link"
+                x1="450"
+                y1="570"
+                x2="604"
+                y2="570"
+                marker-end="url(#s3a)"
+              />
+              <text class="t-msg" x="527" y="556" text-anchor="middle">
+                Orden → CONFIRMED
+              </text>
+              <text class="t-msg" x="527" y="567" text-anchor="middle">
+                o PAYMENT_FAILED
+              </text>
+
+              <line
+                class="link"
+                x1="280"
+                y1="616"
+                x2="444"
+                y2="616"
+                marker-end="url(#s3a)"
+              />
+              <text
+                class="t-msg t-msg--mono"
+                x="362"
+                y="608"
+                text-anchor="middle"
+              >
+                GET /api/v1/orders/{id}
+              </text>
+
+              <line
+                class="link link--dashed"
+                x1="450"
+                y1="662"
+                x2="286"
+                y2="662"
+                marker-end="url(#s3a)"
+              />
+              <text class="t-msg" x="365" y="654" text-anchor="middle">
+                Estado actualizado
+              </text>
+            </svg>
+          </div>
+
+          <h3 class="subhead">Rutas alternativas</h3>
+          <div class="grid grid--4">
+            <article class="mini-card mini-card--red">
+              <h4>Falta de stock</h4>
+              <p>
+                La reserva falla dentro de la transacción: no se crea la orden y
+                se devuelve <code>409 Conflict</code>.
+              </p>
+            </article>
+            <article class="mini-card mini-card--orange">
+              <h4>Pago lento</h4>
+              <p>
+                La orden permanece en <code>PENDING_PAYMENT</code>. El frontend
+                hace polling del estado; nunca reintenta el cobro.
+              </p>
+            </article>
+            <article class="mini-card mini-card--cyan">
+              <h4>Webhook duplicado</h4>
+              <p>
+                Se descarta por la clave única del evento: el procesamiento es
+                idempotente y no altera el resultado.
+              </p>
+            </article>
+            <article class="mini-card mini-card--blue">
+              <h4>Reserva expirada</h4>
+              <p>
+                Un job libera el stock y mueve la orden a
+                <code>CANCELLED_OR_EXPIRED</code> si no llegó el pago.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="slide-4"
+          aria-label="Despliegue e infraestructura"
+        >
+          <header class="slide__head">
+            <h2>Despliegue e infraestructura</h2>
+            <p>
+              Servicios gestionados, multi-AZ y recuperación ante fallas en cada
+              capa.
+            </p>
+          </header>
+
+          <div class="diagram__scroll">
+            <svg
+              class="diagram-svg"
+              viewBox="0 0 1200 560"
+              role="img"
+              aria-labelledby="s4-title s4-desc"
+            >
+              <title id="s4-title">Infraestructura AWS de CommerceHub</title>
+              <desc id="s4-desc">
+                Clientes detrás de CloudFront y AWS WAF, balanceador de carga,
+                Amazon ECS con Fargate en dos zonas de disponibilidad y
+                servicios de datos gestionados.
+              </desc>
+
+              <defs>
+                <marker
+                  id="s4a"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="7"
+                  markerHeight="7"
+                  orient="auto"
+                >
+                  <path d="M0 0 L10 5 L0 10 Z" fill="#6b83ad" />
+                </marker>
+                <marker
+                  id="s4b"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="7"
+                  markerHeight="7"
+                  orient="auto"
+                >
+                  <path d="M0 0 L10 5 L0 10 Z" fill="#38e0d0" />
+                </marker>
+              </defs>
+
+              <g class="node-static">
+                <rect x="50" y="110" width="160" height="120" rx="12" />
+                <text class="t-title" x="130" y="150" text-anchor="middle">
+                  Clientes
+                </text>
+                <text class="t-sub" x="130" y="174" text-anchor="middle">
+                  Web (React)
+                </text>
+                <text class="t-sub" x="130" y="194" text-anchor="middle">
+                  Móvil (React Native)
+                </text>
+              </g>
+
+              <line
+                class="link"
+                x1="210"
+                y1="170"
+                x2="244"
+                y2="170"
+                marker-end="url(#s4a)"
+              />
+              <text class="t-link" x="227" y="160" text-anchor="middle">
+                HTTPS
+              </text>
+
+              <g class="node-static">
+                <rect x="250" y="110" width="180" height="120" rx="12" />
+                <text class="t-title" x="340" y="150" text-anchor="middle">
+                  CloudFront
+                </text>
+                <text class="t-title" x="340" y="172" text-anchor="middle">
+                  + AWS WAF
+                </text>
+                <text class="t-sub" x="340" y="196" text-anchor="middle">
+                  TLS · reglas OWASP
+                </text>
+              </g>
+
+              <line
+                class="link"
+                x1="430"
+                y1="170"
+                x2="464"
+                y2="170"
+                marker-end="url(#s4a)"
+              />
+              <text class="t-link" x="447" y="160" text-anchor="middle">
+                TLS
+              </text>
+
+              <g class="node-static">
+                <rect x="470" y="110" width="140" height="120" rx="12" />
+                <text class="t-title" x="540" y="158" text-anchor="middle">
+                  Balanceador
+                </text>
+                <text class="t-title" x="540" y="180" text-anchor="middle">
+                  de carga
+                </text>
+                <text class="t-sub" x="540" y="202" text-anchor="middle">
+                  health checks
+                </text>
+              </g>
+
+              <line
+                class="link"
+                x1="610"
+                y1="170"
+                x2="644"
+                y2="170"
+                marker-end="url(#s4a)"
+              />
+              <text class="t-link" x="627" y="160" text-anchor="middle">
+                routing
+              </text>
+
+              <g class="node-static">
+                <rect
+                  class="container"
+                  x="650"
+                  y="60"
+                  width="500"
+                  height="250"
+                  rx="14"
+                />
+                <text class="t-title" x="900" y="84" text-anchor="middle">
+                  Amazon ECS · Fargate · auto scaling
+                </text>
+              </g>
+
+              <g class="node-static">
+                <rect
+                  class="container"
+                  x="666"
+                  y="96"
+                  width="228"
+                  height="198"
+                  rx="12"
+                />
+                <text
+                  class="t-sub t-sub--strong"
+                  x="780"
+                  y="118"
+                  text-anchor="middle"
+                >
+                  Zona de disponibilidad A
+                </text>
+                <rect
+                  class="chip"
+                  x="682"
+                  y="130"
+                  width="196"
+                  height="48"
+                  rx="8"
+                />
+                <text class="t-sub" x="780" y="159" text-anchor="middle">
+                  Backend · tarea 1
+                </text>
+                <rect
+                  class="chip"
+                  x="682"
+                  y="184"
+                  width="196"
+                  height="48"
+                  rx="8"
+                />
+                <text class="t-sub" x="780" y="213" text-anchor="middle">
+                  Backend · tarea 2
+                </text>
+                <rect
+                  class="chip"
+                  x="682"
+                  y="238"
+                  width="196"
+                  height="48"
+                  rx="8"
+                />
+                <text class="t-sub" x="780" y="267" text-anchor="middle">
+                  Backend · tarea 3
+                </text>
+              </g>
+
+              <g class="node-static">
+                <rect
+                  class="container"
+                  x="906"
+                  y="96"
+                  width="228"
+                  height="198"
+                  rx="12"
+                />
+                <text
+                  class="t-sub t-sub--strong"
+                  x="1020"
+                  y="118"
+                  text-anchor="middle"
+                >
+                  Zona de disponibilidad B
+                </text>
+                <rect
+                  class="chip"
+                  x="922"
+                  y="130"
+                  width="196"
+                  height="48"
+                  rx="8"
+                />
+                <text class="t-sub" x="1020" y="159" text-anchor="middle">
+                  Backend · tarea 1
+                </text>
+                <rect
+                  class="chip"
+                  x="922"
+                  y="184"
+                  width="196"
+                  height="48"
+                  rx="8"
+                />
+                <text class="t-sub" x="1020" y="213" text-anchor="middle">
+                  Backend · tarea 2
+                </text>
+                <rect
+                  class="chip"
+                  x="922"
+                  y="238"
+                  width="196"
+                  height="48"
+                  rx="8"
+                />
+                <text class="t-sub" x="1020" y="267" text-anchor="middle">
+                  Backend · tarea 3
+                </text>
+              </g>
+
+              <path class="bus" d="M900 310 L900 370" />
+              <path class="bus" d="M102 370 L1098 370" />
+
+              <line
+                class="link"
+                x1="102"
+                y1="370"
+                x2="102"
+                y2="414"
+                marker-end="url(#s4a)"
+              />
+              <line
+                class="link"
+                x1="268"
+                y1="370"
+                x2="268"
+                y2="414"
+                marker-end="url(#s4a)"
+              />
+              <line
+                class="link link--async"
+                x1="434"
+                y1="370"
+                x2="434"
+                y2="414"
+                marker-end="url(#s4b)"
+              />
+              <line
+                class="link"
+                x1="600"
+                y1="370"
+                x2="600"
+                y2="414"
+                marker-end="url(#s4a)"
+              />
+              <line
+                class="link"
+                x1="766"
+                y1="370"
+                x2="766"
+                y2="414"
+                marker-end="url(#s4a)"
+              />
+              <line
+                class="link link--async"
+                x1="932"
+                y1="370"
+                x2="932"
+                y2="414"
+                marker-end="url(#s4b)"
+              />
+              <line
+                class="link link--async"
+                x1="1098"
+                y1="370"
+                x2="1098"
+                y2="414"
+                marker-end="url(#s4b)"
+              />
+
+              <text class="t-link" x="108" y="396">SQL</text>
+              <text class="t-link" x="274" y="396">caché</text>
+              <text class="t-link t-link--async" x="440" y="396">eventos</text>
+              <text class="t-link" x="606" y="396">objetos</text>
+              <text class="t-link" x="772" y="396">secretos</text>
+              <text class="t-link t-link--async" x="938" y="396">OTLP</text>
+              <text class="t-link t-link--async" x="1104" y="396">HTTPS</text>
+
+              <g class="node-static">
+                <rect x="27" y="420" width="150" height="110" rx="12" />
+                <text class="t-title" x="102" y="450" text-anchor="middle">
+                  Amazon RDS
+                </text>
+                <text class="t-sub" x="102" y="472" text-anchor="middle">
+                  PostgreSQL Multi-AZ
+                </text>
+                <text class="t-sub" x="102" y="492" text-anchor="middle">
+                  backups + PITR
+                </text>
+              </g>
+              <g class="node-static">
+                <rect x="193" y="420" width="150" height="110" rx="12" />
+                <text class="t-title" x="268" y="450" text-anchor="middle">
+                  ElastiCache
+                </text>
+                <text class="t-sub" x="268" y="472" text-anchor="middle">
+                  Redis
+                </text>
+                <text class="t-sub" x="268" y="492" text-anchor="middle">
+                  caché y sesiones
+                </text>
+              </g>
+              <g class="node-static">
+                <rect x="359" y="420" width="150" height="110" rx="12" />
+                <text class="t-title" x="434" y="450" text-anchor="middle">
+                  Amazon SQS
+                </text>
+                <text class="t-sub" x="434" y="472" text-anchor="middle">
+                  broker gestionado
+                </text>
+                <text class="t-sub" x="434" y="492" text-anchor="middle">
+                  eventos + DLQ
+                </text>
+              </g>
+              <g class="node-static">
+                <rect x="525" y="420" width="150" height="110" rx="12" />
+                <text class="t-title" x="600" y="450" text-anchor="middle">
+                  Amazon S3
+                </text>
+                <text class="t-sub" x="600" y="472" text-anchor="middle">
+                  imágenes
+                </text>
+                <text class="t-sub" x="600" y="492" text-anchor="middle">
+                  servidas por CDN
+                </text>
+              </g>
+              <g class="node-static">
+                <rect x="691" y="420" width="150" height="110" rx="12" />
+                <text class="t-title" x="766" y="450" text-anchor="middle">
+                  Secrets Manager
+                </text>
+                <text class="t-sub" x="766" y="472" text-anchor="middle">
+                  credenciales
+                </text>
+                <text class="t-sub" x="766" y="492" text-anchor="middle">
+                  rotación automática
+                </text>
+              </g>
+              <g class="node-static">
+                <rect x="857" y="420" width="150" height="110" rx="12" />
+                <text class="t-title" x="932" y="450" text-anchor="middle">
+                  CloudWatch
+                </text>
+                <text class="t-sub" x="932" y="472" text-anchor="middle">
+                  OpenTelemetry
+                </text>
+                <text class="t-sub" x="932" y="492" text-anchor="middle">
+                  logs · trazas · alertas
+                </text>
+              </g>
+              <g class="node-static">
+                <rect x="1023" y="420" width="150" height="110" rx="12" />
+                <text class="t-title" x="1098" y="450" text-anchor="middle">
+                  Proveedor
+                </text>
+                <text class="t-sub" x="1098" y="472" text-anchor="middle">
+                  de pagos
+                </text>
+                <text class="t-sub" x="1098" y="492" text-anchor="middle">
+                  webhooks firmados
+                </text>
+              </g>
+            </svg>
+          </div>
+
+          <ul class="legend legend--inline">
+            <li>
+              <span class="legend__line" aria-hidden="true"></span> Conexión del
+              backend
+            </li>
+            <li>
+              <span
+                class="legend__line legend__line--async"
+                aria-hidden="true"
+              ></span>
+              Asíncrono / externo
+            </li>
+          </ul>
+        </section>
+
+        <section
+          class="slide"
+          id="slide-5"
+          aria-label="Pipeline de integración y despliegue"
+        >
+          <header class="slide__head">
+            <h2>Pipeline CI/CD</h2>
+            <p>
+              Del pull request a producción con puertas de calidad, aprobación
+              explícita y rollback automático.
+            </p>
+          </header>
+
+          <div class="diagram__scroll">
+            <svg
+              class="diagram-svg"
+              viewBox="0 0 1200 500"
+              role="img"
+              aria-labelledby="s5-title s5-desc"
+            >
+              <title id="s5-title">
+                Pipeline de integración y despliegue continuo
+              </title>
+              <desc id="s5-desc">
+                Etapas desde el pull request hasta la monitorización en
+                producción, con rama de error que detiene el pipeline y rama de
+                rollback ante degradación.
+              </desc>
+
+              <defs>
+                <marker
+                  id="s5a"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="7"
+                  markerHeight="7"
+                  orient="auto"
+                >
+                  <path d="M0 0 L10 5 L0 10 Z" fill="#6b83ad" />
+                </marker>
+                <marker
+                  id="s5r"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="7"
+                  markerHeight="7"
+                  orient="auto"
+                >
+                  <path d="M0 0 L10 5 L0 10 Z" fill="#ff6b6b" />
+                </marker>
+              </defs>
+
+              <g class="node-static">
+                <rect
+                  class="accent-box accent-box--red"
+                  x="340"
+                  y="12"
+                  width="674"
+                  height="68"
+                  rx="12"
+                />
+                <text class="t-title" x="677" y="42" text-anchor="middle">
+                  Fallo en lint, pruebas o análisis de seguridad
+                </text>
+                <text class="t-sub" x="677" y="62" text-anchor="middle">
+                  el pipeline se detiene · no se publica artefacto ni se
+                  despliega
+                </text>
+              </g>
+
+              <line
+                class="link link--danger"
+                x1="430"
+                y1="108"
+                x2="430"
+                y2="84"
+                marker-end="url(#s5r)"
+              />
+              <line
+                class="link link--danger"
+                x1="600"
+                y1="108"
+                x2="600"
+                y2="84"
+                marker-end="url(#s5r)"
+              />
+              <line
+                class="link link--danger"
+                x1="770"
+                y1="108"
+                x2="770"
+                y2="84"
+                marker-end="url(#s5r)"
+              />
+              <line
+                class="link link--danger"
+                x1="940"
+                y1="108"
+                x2="940"
+                y2="84"
+                marker-end="url(#s5r)"
+              />
+
+              <g class="stage">
+                <rect x="16" y="110" width="148" height="70" rx="10" />
+                <text x="90" y="150">Pull Request</text>
+                <rect x="186" y="110" width="148" height="70" rx="10" />
+                <text x="260" y="150">Revisión de código</text>
+                <rect x="356" y="110" width="148" height="70" rx="10" />
+                <text x="430" y="150">Lint</text>
+                <rect x="526" y="110" width="148" height="70" rx="10" />
+                <text x="600" y="150">Pruebas unitarias</text>
+                <rect x="696" y="110" width="148" height="70" rx="10" />
+                <text x="770" y="142">Pruebas de</text>
+                <text x="770" y="160">integración</text>
+                <rect x="866" y="110" width="148" height="70" rx="10" />
+                <text x="940" y="142">Análisis de</text>
+                <text x="940" y="160">seguridad</text>
+                <rect x="1036" y="110" width="148" height="70" rx="10" />
+                <text x="1110" y="150">Build</text>
+              </g>
+
+              <line
+                class="link"
+                x1="164"
+                y1="145"
+                x2="182"
+                y2="145"
+                marker-end="url(#s5a)"
+              />
+              <line
+                class="link"
+                x1="334"
+                y1="145"
+                x2="352"
+                y2="145"
+                marker-end="url(#s5a)"
+              />
+              <line
+                class="link"
+                x1="504"
+                y1="145"
+                x2="522"
+                y2="145"
+                marker-end="url(#s5a)"
+              />
+              <line
+                class="link"
+                x1="674"
+                y1="145"
+                x2="692"
+                y2="145"
+                marker-end="url(#s5a)"
+              />
+              <line
+                class="link"
+                x1="844"
+                y1="145"
+                x2="862"
+                y2="145"
+                marker-end="url(#s5a)"
+              />
+              <line
+                class="link"
+                x1="1014"
+                y1="145"
+                x2="1032"
+                y2="145"
+                marker-end="url(#s5a)"
+              />
+
+              <line
+                class="link"
+                x1="1110"
+                y1="180"
+                x2="1110"
+                y2="256"
+                marker-end="url(#s5a)"
+              />
+
+              <g class="stage">
+                <rect x="1036" y="260" width="148" height="70" rx="10" />
+                <text x="1110" y="292">Registro de</text>
+                <text x="1110" y="310">artefactos</text>
+                <rect x="866" y="260" width="148" height="70" rx="10" />
+                <text x="940" y="300">Staging</text>
+                <rect x="696" y="260" width="148" height="70" rx="10" />
+                <text x="770" y="300">Smoke tests</text>
+                <rect x="526" y="260" width="148" height="70" rx="10" />
+                <text x="600" y="300">Aprobación</text>
+                <rect x="356" y="260" width="148" height="70" rx="10" />
+                <text x="430" y="292">Producción</text>
+                <text x="430" y="310">Canary / Blue-Green</text>
+                <rect x="186" y="260" width="148" height="70" rx="10" />
+                <text x="260" y="300">Monitorización</text>
+              </g>
+
+              <line
+                class="link"
+                x1="1036"
+                y1="295"
+                x2="1018"
+                y2="295"
+                marker-end="url(#s5a)"
+              />
+              <line
+                class="link"
+                x1="866"
+                y1="295"
+                x2="848"
+                y2="295"
+                marker-end="url(#s5a)"
+              />
+              <line
+                class="link"
+                x1="696"
+                y1="295"
+                x2="678"
+                y2="295"
+                marker-end="url(#s5a)"
+              />
+              <line
+                class="link"
+                x1="526"
+                y1="295"
+                x2="508"
+                y2="295"
+                marker-end="url(#s5a)"
+              />
+              <line
+                class="link"
+                x1="356"
+                y1="295"
+                x2="338"
+                y2="295"
+                marker-end="url(#s5a)"
+              />
+
+              <line
+                class="link link--danger"
+                x1="260"
+                y1="330"
+                x2="260"
+                y2="386"
+                marker-end="url(#s5r)"
+              />
+
+              <g class="node-static">
+                <rect
+                  class="accent-box accent-box--red"
+                  x="16"
+                  y="390"
+                  width="380"
+                  height="90"
+                  rx="12"
+                />
+                <text class="t-title" x="206" y="420" text-anchor="middle">
+                  Rollback automático
+                </text>
+                <text class="t-sub" x="206" y="442" text-anchor="middle">
+                  si el canary degrada latencia o errores,
+                </text>
+                <text class="t-sub" x="206" y="460" text-anchor="middle">
+                  se revierte a la versión estable anterior
+                </text>
+              </g>
+
+              <g class="node-static">
+                <rect
+                  class="accent-box"
+                  x="430"
+                  y="390"
+                  width="350"
+                  height="90"
+                  rx="12"
+                />
+                <text class="t-title" x="605" y="420" text-anchor="middle">
+                  Gestión de secretos
+                </text>
+                <text class="t-sub" x="605" y="442" text-anchor="middle">
+                  credenciales inyectadas en tiempo de ejecución,
+                </text>
+                <text class="t-sub" x="605" y="460" text-anchor="middle">
+                  nunca en el repositorio ni en la imagen
+                </text>
+              </g>
+
+              <g class="node-static">
+                <rect
+                  class="accent-box"
+                  x="810"
+                  y="390"
+                  width="374"
+                  height="90"
+                  rx="12"
+                />
+                <text class="t-title" x="997" y="420" text-anchor="middle">
+                  Migraciones compatibles
+                </text>
+                <text class="t-sub" x="997" y="442" text-anchor="middle">
+                  expandir → desplegar → contraer,
+                </text>
+                <text class="t-sub" x="997" y="460" text-anchor="middle">
+                  siempre compatibles hacia atrás
+                </text>
+              </g>
+            </svg>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="slide-6"
+          aria-label="Máquina de estados del checkout"
+        >
+          <header class="slide__head">
+            <h2>Máquina de estados del checkout</h2>
+            <p>Un timeout no significa que la orden no se haya creado.</p>
+          </header>
+
+          <div class="callout callout--cyan">
+            <strong>Reintentos:</strong> si se reintenta la misma operación, se
+            reutiliza <em>la misma</em> <code>Idempotency-Key</code>. Nunca se
+            genera una clave nueva para un reintento: eso crearía una segunda
+            orden.
+          </div>
+
+          <div class="diagram__scroll">
+            <svg
+              class="diagram-svg"
+              viewBox="0 0 1200 600"
+              role="img"
+              aria-labelledby="s6-title s6-desc"
+            >
+              <title id="s6-title">Máquina de estados del checkout</title>
+              <desc id="s6-desc">
+                Estados del checkout y transiciones: validación, envío, orden
+                pendiente, confirmación, errores recuperables y definitivos,
+                reconciliación y cancelación.
+              </desc>
+
+              <defs>
+                <marker
+                  id="s6a"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="7"
+                  markerHeight="7"
+                  orient="auto"
+                >
+                  <path d="M0 0 L10 5 L0 10 Z" fill="#6b83ad" />
+                </marker>
+              </defs>
+
+              <g class="state">
+                <rect x="40" y="50" width="160" height="70" rx="10" />
+                <text x="120" y="92">IDLE</text>
+                <rect x="280" y="50" width="160" height="70" rx="10" />
+                <text x="360" y="92">VALIDATING</text>
+                <rect x="520" y="50" width="160" height="70" rx="10" />
+                <text x="600" y="92">SUBMITTING</text>
+                <rect x="760" y="50" width="180" height="70" rx="10" />
+                <text x="850" y="92">ORDER_PENDING</text>
+                <rect x="1020" y="50" width="160" height="70" rx="10" />
+                <text x="1100" y="92">CONFIRMED</text>
+              </g>
+
+              <g class="state state--warn">
+                <rect x="40" y="280" width="300" height="70" rx="10" />
+                <text x="190" y="322">DEFINITIVE_ERROR</text>
+              </g>
+              <g class="state state--warn">
+                <rect x="400" y="280" width="300" height="70" rx="10" />
+                <text x="550" y="322">RECOVERABLE_ERROR</text>
+              </g>
+              <g class="state state--warn">
+                <rect x="720" y="280" width="240" height="70" rx="10" />
+                <text x="840" y="322">CANCELLED_OR_EXPIRED</text>
+              </g>
+
+              <g class="state state--info">
+                <rect x="400" y="460" width="240" height="70" rx="10" />
+                <text x="520" y="502">RECONCILING</text>
+              </g>
+
+              <line
+                class="link"
+                x1="200"
+                y1="85"
+                x2="274"
+                y2="85"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="240" y="77" text-anchor="middle">
+                Pagar
+              </text>
+
+              <line
+                class="link"
+                x1="440"
+                y1="85"
+                x2="514"
+                y2="85"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="480" y="77" text-anchor="middle">
+                datos válidos
+              </text>
+
+              <line
+                class="link"
+                x1="680"
+                y1="85"
+                x2="754"
+                y2="85"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="720" y="77" text-anchor="middle">
+                201 Created
+              </text>
+
+              <line
+                class="link"
+                x1="940"
+                y1="85"
+                x2="1014"
+                y2="85"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="980" y="77" text-anchor="middle">
+                pago aprobado
+              </text>
+
+              <line
+                class="link"
+                x1="300"
+                y1="120"
+                x2="300"
+                y2="274"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="306" y="200">datos inválidos</text>
+
+              <line
+                class="link"
+                x1="600"
+                y1="120"
+                x2="600"
+                y2="274"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="594" y="192" text-anchor="end">
+                timeout / error de red
+              </text>
+
+              <line
+                class="link"
+                x1="660"
+                y1="274"
+                x2="660"
+                y2="120"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="666" y="238">reintento · misma key</text>
+
+              <line
+                class="link"
+                x1="820"
+                y1="120"
+                x2="820"
+                y2="274"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="826" y="200">reserva expirada</text>
+
+              <path
+                class="link"
+                d="M520 100 H460 V200 H340 V315"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="400" y="192" text-anchor="middle">
+                4xx
+              </text>
+
+              <line
+                class="link"
+                x1="100"
+                y1="280"
+                x2="100"
+                y2="124"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="106" y="205">nueva compra</text>
+
+              <line
+                class="link"
+                x1="470"
+                y1="350"
+                x2="470"
+                y2="454"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="476" y="412">estado indeterminado</text>
+
+              <path
+                class="link"
+                d="M820 350 V420 H640 V454"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="730" y="412" text-anchor="middle">
+                reconciliar
+              </text>
+
+              <path
+                class="link"
+                d="M400 495 H200 V354"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="300" y="487" text-anchor="middle">
+                no existe la orden
+              </text>
+
+              <path
+                class="link"
+                d="M640 510 H1120 V124"
+                marker-end="url(#s6a)"
+              />
+              <text class="t-msg" x="880" y="502" text-anchor="middle">
+                pago confirmado
+              </text>
+            </svg>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="slide-7"
+          aria-label="Seguridad y resiliencia"
+        >
+          <header class="slide__head">
+            <h2>Seguridad y resiliencia</h2>
+            <p>
+              Cuatro áreas que se refuerzan entre sí: sin integridad no hay
+              confianza, sin observabilidad no hay respuesta.
+            </p>
+          </header>
+
+          <div class="grid grid--2">
+            <article class="area area--blue">
+              <header class="area__head">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9 12l2 2 4-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <h3>Seguridad</h3>
+              </header>
+              <ul class="chips">
+                <li>Autenticación</li>
+                <li>Autorización por recurso</li>
+                <li>Consultas parametrizadas</li>
+                <li>TLS y cifrado en reposo</li>
+                <li>Gestión de secretos</li>
+                <li>Verificación de webhooks</li>
+              </ul>
+            </article>
+
+            <article class="area area--green">
+              <header class="area__head">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <ellipse
+                    cx="12"
+                    cy="6"
+                    rx="7"
+                    ry="3"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  />
+                  <path
+                    d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  />
+                </svg>
+                <h3>Integridad de datos</h3>
+              </header>
+              <ul class="chips">
+                <li>Transacciones ACID</li>
+                <li>Restricciones en base de datos</li>
+                <li>Reservas temporales</li>
+                <li>Control de concurrencia</li>
+                <li>Claves de idempotencia</li>
+              </ul>
+            </article>
+
+            <article class="area area--orange">
+              <header class="area__head">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M3 12h4l2-6 4 12 2-6h6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <h3>Resiliencia</h3>
+              </header>
+              <ul class="chips">
+                <li>Timeouts</li>
+                <li>Reintentos con backoff</li>
+                <li>Circuit breaker</li>
+                <li>Dead-letter queue</li>
+                <li>Reconciliación de pagos</li>
+                <li>Backups y recuperación</li>
+              </ul>
+            </article>
+
+            <article class="area area--cyan">
+              <header class="area__head">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M4 19V9M10 19V5M16 19v-7M22 19H2"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <h3>Observabilidad</h3>
+              </header>
+              <ul class="chips">
+                <li>Logs estructurados</li>
+                <li>Correlation IDs</li>
+                <li>Métricas de latencia y errores</li>
+                <li>Trazas distribuidas</li>
+                <li>Alertas operativas</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section
+          class="slide"
+          id="slide-8"
+          aria-label="Decisiones técnicas y trade-offs"
+        >
+          <header class="slide__head">
+            <h2>Decisiones técnicas y trade-offs</h2>
+            <p>
+              Seis elecciones con su beneficio, su límite y la condición que
+              obligaría a revisarlas.
+            </p>
+          </header>
+
+          <div class="grid grid--3">
+            <article class="decision">
+              <h3>Monolito modular antes que microservicios</h3>
+              <p class="decision__row">
+                <span class="label label--good">Beneficio</span> Transacciones
+                locales, un solo despliegue y límites de dominio explícitos
+                desde el día uno.
+              </p>
+              <p class="decision__row">
+                <span class="label label--warn">Riesgo</span> Acoplamiento
+                silencioso entre módulos y un único ciclo de release para todo
+                el equipo.
+              </p>
+              <p class="decision__row">
+                <span class="label label--info">Reconsiderar</span> Cuando un
+                módulo necesite escalar o desplegarse con un ritmo claramente
+                distinto al resto.
+              </p>
+            </article>
+
+            <article class="decision">
+              <h3>PostgreSQL como fuente de verdad</h3>
+              <p class="decision__row">
+                <span class="label label--good">Beneficio</span> Inventario,
+                reservas y órdenes se escriben en una sola transacción ACID.
+              </p>
+              <p class="decision__row">
+                <span class="label label--warn">Riesgo</span> La base se
+                convierte en el cuello de botella bajo picos de escritura.
+              </p>
+              <p class="decision__row">
+                <span class="label label--info">Reconsiderar</span> Si la
+                contención sobre una misma fila de stock limita el throughput
+                esperado.
+              </p>
+            </article>
+
+            <article class="decision">
+              <h3>Redis para caché, no como garantía</h3>
+              <p class="decision__row">
+                <span class="label label--good">Beneficio</span> Reduce latencia
+                de lectura y alivia la base de datos.
+              </p>
+              <p class="decision__row">
+                <span class="label label--warn">Riesgo</span> Es volátil: si se
+                usa como fuente de inventario, se puede vender stock
+                inexistente.
+              </p>
+              <p class="decision__row">
+                <span class="label label--info">Reconsiderar</span> Nunca para
+                la decisión de stock; solo si se necesita caché distribuida de
+                mayor tamaño.
+              </p>
+            </article>
+
+            <article class="decision">
+              <h3>Transactional Outbox</h3>
+              <p class="decision__row">
+                <span class="label label--good">Beneficio</span> El evento se
+                guarda en la misma transacción que el cambio de datos: no hay
+                eventos perdidos.
+              </p>
+              <p class="decision__row">
+                <span class="label label--warn">Riesgo</span> Entrega al menos
+                una vez: los consumidores deben ser idempotentes.
+              </p>
+              <p class="decision__row">
+                <span class="label label--info">Reconsiderar</span> Si el broker
+                ofreciera transacciones compatibles con el motor SQL utilizado.
+              </p>
+            </article>
+
+            <article class="decision">
+              <h3>Idempotencia en órdenes y pagos</h3>
+              <p class="decision__row">
+                <span class="label label--good">Beneficio</span> Los reintentos
+                y los webhooks duplicados no generan dobles cargos ni órdenes
+                repetidas.
+              </p>
+              <p class="decision__row">
+                <span class="label label--warn">Riesgo</span> Requiere almacenar
+                claves y respuestas, y definir una ventana de retención.
+              </p>
+              <p class="decision__row">
+                <span class="label label--info">Reconsiderar</span> Si el
+                proveedor de pagos ya garantiza idempotencia de extremo a
+                extremo con su propia clave.
+              </p>
+            </article>
+
+            <article class="decision">
+              <h3>Servicios gestionados</h3>
+              <p class="decision__row">
+                <span class="label label--good">Beneficio</span> Menos carga
+                operativa y recuperación ante fallas delegada en el proveedor.
+              </p>
+              <p class="decision__row">
+                <span class="label label--warn">Riesgo</span> Coste variable y
+                dependencia del proveedor cloud.
+              </p>
+              <p class="decision__row">
+                <span class="label label--info">Reconsiderar</span> Cuando el
+                coste a escala supere el ahorro operativo o exista una exigencia
+                de portabilidad.
+              </p>
+            </article>
+          </div>
+
+          <blockquote class="closing">
+            La mejor arquitectura es la más simple que satisface los requisitos
+            con garantías verificables.
+          </blockquote>
+        </section>
+      </main>
+
+      <footer class="controls">
+        <button type="button" class="btn" id="prevBtn">← Anterior</button>
+        <nav class="dots" id="dots" aria-label="Ir a diapositiva"></nav>
+        <button type="button" class="btn" id="nextBtn">Siguiente →</button>
+      </footer>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
